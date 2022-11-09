@@ -1,0 +1,27 @@
+from cmath import sqrt
+import math
+import cmath
+
+f = 3*pow(10,9)
+f_2 = 900*pow(10,6)
+c = 3*pow(10,8)
+a_s = -0.7
+a_p = -0.9
+dis_ = [0,0,0]
+def distance(separation):
+    dis_[0] = separation
+    dis_[1] = math.sqrt(pow(separation,2)*pow(4,2))
+    dis_[2] = math.sqrt(pow(separation,2)*pow(36,2))
+    return dis_
+
+for x in range (3,41):
+    dis_ = distance(x)
+    e_power_2 = pow(math.e,complex(0,1)*-2*3.1481*f*((dis_[1]/c)-(dis_[0]/c)))
+    e_power_3 = pow(math.e,complex(0,1)*-2*3.1481*f*((dis_[2]/c)-(dis_[0]/c)))
+    P_1 =  1
+    P_2 = ((1/dis_[0])+((-0.9/dis_[1])*e_power_2))
+    P_2_print = (pow(cmath.sqrt(pow(P_2.real,2)+pow(P_2.imag,2)),2))
+    P_3 = ((1/dis_[0])+((-0.9/dis_[1])*e_power_2)+(((-0.7*-0.9*-0.7)/dis_[2])*e_power_3))
+    P_3_print = (pow(cmath.sqrt(pow(P_3.real,2)+pow(P_3.imag,2)),2))
+    print(x, 'm P2=P0*',P_2_print.real,'and P3=P0*',P_3_print.real)
+
